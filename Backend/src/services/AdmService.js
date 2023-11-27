@@ -1,7 +1,6 @@
 const AdmRepository = require('../repositories/AdmRepository')
 const DataValidation = require('../utils/validation')
 
-const verify = new DataValidation()
 const repositories = new AdmRepository()
 
 

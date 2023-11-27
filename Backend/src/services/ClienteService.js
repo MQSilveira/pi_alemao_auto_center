@@ -1,30 +1,30 @@
 const ClienteRepository = require('../repositories/ClienteRepository')
 
-// Criar a valicação 
+const repositories = new ClienteRepository()
 
 class ClienteService {
     async GetCliente() {
-        const cliente = ClienteRepository.GetCliente()
+        const cliente = repositories.GetCliente()
         return cliente
     }
 
     async GetClienteById(id, transaction) {
-        const cliente = ClienteRepository.GetClienteById(id, transaction)
+        const cliente = repositories.GetClienteById(id, transaction)
         return cliente
     }
 
     async CreateCliente(data, transaction) {
-        const cliente = ClienteRepository.CreateCliente(data, transaction)
+        const cliente = repositories.CreateCliente(data, transaction)
         return cliente
     }
 
     async UpdateCliente(id, data, transaction) {
-        const cliente = ClienteRepository.UpdateCliente(id, data, transaction)
+        const cliente = repositories.UpdateCliente(id, data, transaction)
         return cliente
     }
 
     async DeleteCliente(id, transaction) {
-        const cliente = ClienteRepository.DeleteCliente(id, transaction)
+        const cliente = repositories.DeleteCliente(id, transaction)
         return cliente
     }
 }

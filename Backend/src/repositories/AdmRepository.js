@@ -47,7 +47,6 @@ class AdmRepository {
     
     async CreateAdm(data, transaction) {
         try {
-
             const email = await this.GetByEmail(data.email)
             if (email) {
                 throw new Error('Email já cadastrado')

@@ -1,4 +1,4 @@
-const { DataTypes } = require('sequelize')
+const { DataTypes, Sequelize } = require('sequelize')
 const db = require('../database/db')
 
 const Cliente = db.define('cliente', {
@@ -21,7 +21,8 @@ const Cliente = db.define('cliente', {
     },
     createdAt: {
         type: DataTypes.DATE,
-        field: 'created_at'
+        field: 'created_at',
+        defaultValue: Sequelize.fn('NOW')
     },
     updatedAt: {
         type: DataTypes.DATE,
