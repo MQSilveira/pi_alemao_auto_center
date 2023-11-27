@@ -9,6 +9,10 @@ class AdmController {
     async GetAdm(_, res) {
         try {
             const adm = await service.GetAdm()
+            if (adm === null) {
+                return res.status(404).json({ message: 'Não há administradores cadastrados!' })
+            }
+
             res.status(200).json({ data: adm })
         }
         catch (error) {
@@ -19,6 +23,10 @@ class AdmController {
     async GetAdmById(req, res) {
         try {
             const adm = await service.GetAdmById(req.params.id)
+            if (adm === null) {
+                return res.status(404).json({ message: 'Administrador não encontrado!' })
+            }
+
             res.status(200).json({ data: adm })
         }
         catch (error) {
@@ -28,13 +36,14 @@ class AdmController {
 
     async CreateAdm(req, res) {
         try {
-            await service.CreateAdm(req.body)
+            const result = await service.CreateAdm(req.body)
             res.status(201).json({ message: 'Administrador criado com sucesso' })
         
         } catch (err) {
-            if (err.name === 'SequelizeUniqueConstraintError') {
-                res.status(409).json({ message: 'Email já cadastrado' })
-
+            console.log(err)
+            if (err.status && err.message) {
+                res.status(err.status).json({ message: err.message })
+                
             } else if (err.name === 'SequelizeValidationError') {
                 res.status(400).json({ message: err.message })
             
@@ -100,8 +109,7 @@ class AdmController {
                 const token = jwt.sign(
                     {
                         id: adm.id,
-                        email: adm.email,
-                        role: true
+                        email: adm.email
                     },
                     config.secret,
                 )

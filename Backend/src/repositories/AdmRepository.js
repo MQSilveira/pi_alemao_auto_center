@@ -12,6 +12,9 @@ class AdmRepository {
             const adm = await Adm.findAll({
                 attributes: ['nome_completo', 'email', 'contato']
             })
+            if (adm.length === 0) {
+                return null
+            }
             return adm
             
         } catch (err) {
@@ -44,6 +47,12 @@ class AdmRepository {
     
     async CreateAdm(data, transaction) {
         try {
+
+            const email = await this.GetByEmail(data.email)
+            if (email) {
+                throw new Error('Email já cadastrado')
+            }
+
             const hashedsenha = await encrypter.HashPassword(data.senha)
             
             Adm.create(
@@ -58,7 +67,7 @@ class AdmRepository {
             return null
 
         } catch (err) {
-            throw err
+            throw { status: 409, message: err.message }
         }
     }
 

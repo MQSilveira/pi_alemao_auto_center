@@ -7,7 +7,7 @@ const controller = new AdmController()
 const router = express.Router()
 
 router.post('/login', controller.LoginAdm)
-router.post('/', authMiddleware(), controller.CreateAdm)
+router.post('/newadm', authMiddleware(), controller.CreateAdm)
 router.get('/', authMiddleware(), controller.GetAdm)
 router.get('/:id', authMiddleware(), controller.GetAdmById)
 router.put('/:id', authMiddleware(), controller.UpdateAdm)
