@@ -44,6 +44,31 @@ class AdmRepository {
             throw err
         }
     }
+
+    async FindAdmById(id, transaction) {
+        try {
+            const adm = await Adm.findOne({
+                where: {
+                    id: id
+                }
+            },
+            { transaction }
+            )
+
+            if (!adm) {
+                return null
+
+            } else {
+                const id = adm.dataValues.id
+                return id
+                
+            }
+
+        } catch (err) {
+            throw err
+        }
+    }
+
     
     async CreateAdm(data, transaction) {
         try {

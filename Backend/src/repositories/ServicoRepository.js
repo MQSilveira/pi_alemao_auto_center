@@ -1,13 +1,38 @@
 const Servico = require('../models/Servico')
 const DataEncrypter = require('../utils/encrypter')
+const Administrador = require('../models/Administrador')
+const Cliente = require('../models/Cliente')
+
+// AJUSTAR O UPDATED_AT //
+// AO CRIAR UM SERVIÇO, O CAMPO UPDATED_AT É CRIADO COM O MESMO VALOR DE CREATED_AT //
 
 const encrypter = new DataEncrypter()
 
 class ServicoRepository {
     async GetServico() {
-        const servico = await Servico.findAll()
-        return servico
+        try {
+            const servico = await Servico.findAll({
+                include : [
+                    {
+                        model: Administrador,
+                        attributes: ['id', 'nome_completo'],
+                        as: 'administrador'
+                    },
+                    {
+                        model: Cliente,
+                        attributes: ['id', 'nome_completo', 'contato', 'endereco'],
+                        as: 'cliente'
+                    }
+                ]
+            })
+
+            return servico
+        }
+        catch (err) {
+            throw err
+        }
     }
+
 
     async GetServicoById(id, transaction) {
         const servico = await Servico.findOne(
@@ -15,10 +40,14 @@ class ServicoRepository {
                 where: { id },
                 include : [
                     {
-                        model: Administrador
+                        model: Administrador,
+                        attributes: ['id', 'nome_completo'],
+                        as: 'administrador'
                     },
                     {
-                        model: Cliente
+                        model: Cliente,
+                        attributes: ['id', 'nome_completo', 'contato', 'endereco'],
+                        as: 'cliente'
                     }
                 ]
             },
@@ -27,9 +56,7 @@ class ServicoRepository {
         return servico
     }
 
-    async CreateServico(data, transaction) {
-        const hashedPassword = await encrypter.HashPassword(data.senha)
-        
+    async CreateServico(data, transaction) { 
         const servico = await Servico.create(
             {
                 data_hora: data.data_hora,
@@ -40,7 +67,8 @@ class ServicoRepository {
                 concluido: data.concluido,
                 descricao_servico: data.descricao_servico,
                 administrador_id: data.administrador_id,
-                created_at: new Date().toISOString().slice(0, 19).replace('T', ' '),
+                concluido: 0,
+                valor: data.valor
             },
             { transaction }
         )

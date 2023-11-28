@@ -13,6 +13,11 @@ class ClienteService {
         return cliente
     }
 
+    async FindClienteById(id, transaction) {
+        const cliente = repositories.FindClienteById(id, transaction)
+        return cliente
+    }
+
     async CreateCliente(data, transaction) {
         const cliente = repositories.CreateCliente(data, transaction)
         return cliente

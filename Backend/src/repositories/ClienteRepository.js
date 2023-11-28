@@ -39,6 +39,29 @@ class ClienteRepository {
         }
     }
 
+    async FindClienteById(id, transaction) {
+        try {
+            const cliente = await Cliente.findOne({
+                where: {
+                    id: id
+                }
+            },
+            { transaction }
+            )
+
+            if (!cliente) {
+                return null
+            
+            } else {
+                const id = cliente.dataValues.id
+                return id
+            }
+
+        } catch (err) {
+            throw err
+        }
+    }
+
     async CreateCliente(data, transaction) {
         try {
             Cliente.create(

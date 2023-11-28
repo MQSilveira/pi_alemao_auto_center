@@ -1,4 +1,4 @@
-const { DataTypes } = require('sequelize')
+const { DataTypes, Sequelize } = require('sequelize')
 
 const db = require('../database/db')
 const Administrador = require('./Administrador')
@@ -43,6 +43,10 @@ const Servico = db.define('servico', {
         type: DataTypes.STRING,
         allowNull: false
     },
+    valor : {
+        type: DataTypes.FLOAT,
+        allowNull: false
+    },
     administrador_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -53,7 +57,8 @@ const Servico = db.define('servico', {
     },
     createdAt: {
         type: DataTypes.DATE,
-        field: 'created_at'
+        field: 'created_at',
+        defaultValue: Sequelize.fn('NOW')
     },
     updatedAt: {
         type: DataTypes.DATE,

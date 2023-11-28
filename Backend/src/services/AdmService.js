@@ -1,5 +1,4 @@
 const AdmRepository = require('../repositories/AdmRepository')
-const DataValidation = require('../utils/validation')
 
 const repositories = new AdmRepository()
 
@@ -12,6 +11,11 @@ class AdmService {
 
     async GetAdmById(id, transaction) {
         const adm = repositories.GetAdmById(id, transaction)
+        return adm
+    }
+
+    async FindAdmById(id, transaction) {
+        const adm = repositories.FindAdmById(id, transaction)
         return adm
     }
 

@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken')
 const config = require('../config')
 
+
 function authMiddleware() {
     return (req, res, next) => {
         const token = req.headers['authorization']
@@ -16,14 +17,6 @@ function authMiddleware() {
             if (err) {
                 return res.status(401).json({ message: 'Token inválido' })
             }
-            
-            // const { role } = decoded
-
-            // if (role !== permission && permission !== null) {
-            //     return res.status(401).json({ message: 'Você não tem permissão para acessar essa rota' })
-            // }
-
-
             next()
         })
     }
