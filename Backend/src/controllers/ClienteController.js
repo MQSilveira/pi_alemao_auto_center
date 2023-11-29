@@ -1,9 +1,7 @@
 const ClienteService = require('../services/ClienteService')
-const config = require('../config')
-const bcrypt = require('bcrypt')
-const jwt = require('jsonwebtoken')
+const DataValidation = require('../utils/validation')
 
-
+const verify = new DataValidation()
 const service = new ClienteService()
 
 class ClienteController {
@@ -37,29 +35,11 @@ class ClienteController {
 
     async CreateCliente(req, res) {
         try {
-            if (Object.keys(req.body).length === 0) {
-                return res.status(400).json({ message: 'É necessário informar os dados do cliente!' })
-            } else if (!req.body.nome_completo) {
-                return res.status(400).json({ message: 'Nome é obrigatório!' })
-            } else if (!req.body.contato) {
-                return res.status(400).json({ message: 'Contato é obrigatório!' })
-            } else if (!req.body.endereco) {
-                return res.status(400).json({ message: 'Endereço é obrigatório!' })
-            }
-
-            await service.CreateCliente(req.body)
+            verify.CreateCliente(req.body)
             res.status(201).json({ message: 'Cliente criado com sucesso' })
 
         } catch (err) {
-            if (err.status && err.message) {
-                res.status(err.status).json({ message: err.message })
-            
-            } else if (err.name === 'SequelizeValidationError') {
-                res.status(400).json({ message: err.message })
-            
-            } else {
-                res.status(500).json({ message: 'Erro ao criar cliente' })
-            }
+            res.status(500).json({ message: 'Erro ao criar cliente' })
         }
     }
 

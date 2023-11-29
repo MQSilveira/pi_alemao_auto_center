@@ -64,7 +64,7 @@ class ClienteRepository {
 
     async CreateCliente(data, transaction) {
         try {
-            Cliente.create(
+            const cliente = Cliente.create(
                 {
                     nome_completo: data.nome_completo,
                     contato: data.contato,
@@ -72,7 +72,7 @@ class ClienteRepository {
                 },
                 { transaction }
             )
-            return null
+            return cliente
 
         } catch (err) {
             throw err
@@ -121,7 +121,6 @@ class ClienteRepository {
             throw err
         }
     }
-
 }
 
 module.exports = ClienteRepository

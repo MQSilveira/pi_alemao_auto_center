@@ -1,32 +1,49 @@
 
 class DataValidation {
-    isItEmpty = (...data) => {
+    CreateCliente = (...data) => {
 
-        data.forEach((data, index) => {
-            if (data === null) {
-                throw new TypeError(`O Argumento no index: ${index} é nulo`)
-            }
-            else if (data === undefined) {
-                throw new TypeError(`O Argumento no index: ${index} é indefinido`)
-            }
-            else if (typeof data === "string" && data.trim() === "") {
-                throw new TypeError(`O Argumento no index: ${index} é uma string vazia`)
-            }
-        })
+        const { nome_completo, contato, endereco } = data[0]
+
+        const validation = [
+            { condition: Object.keys(data).length === 0, message: 'É necessário informar os dados do cliente!' },
+            { condition: !nome_completo, message: 'Nome do cliente é obrigatório!' },
+            { condition: !contato, message: 'Contato do cliente é obrigatório!' },
+            { condition: !endereco, message: 'Endereço do cliente é obrigatório!' }
+        ]
+
+        const validationErrors = validation.filter(field => field.condition)
+        
+
+        if (validationErrors.length > 0) {
+            throw new Error(validationErrors[0].message)
+        }
 
         return true
     }
 
+    CreateServico = (...data) => {
+        
+        const { data_hora, placa, marca, modelo, descricao_servico, administrador_id } = data[0]
 
-    isIdValid(...data) {
-        data.forEach((data, index) => {
-            if (isNaN(data)) {
-                throw new TypeError(`O Argumento no index: ${index} não é um número`)
-            }
-        });
+        const validation = [
+            { condition: Object.keys(data).length === 0, message: 'É necessário informar os dados do serviço!' },
+            { condition: !data_hora, message: 'Data e hora do serviço são obrigatórios!' },
+            { condition: !placa, message: 'Placa do veículo é obrigatória!' },
+            { condition: !marca, message: 'Marca do veículo é obrigatória!' },
+            { condition: !modelo, message: 'Modelo do veículo é obrigatório!' },
+            { condition: !descricao_servico, message: 'Descrição do serviço é obrigatória!' },
+            { condition: !administrador_id, message: 'Administrador é obrigatório!' }
+        ]
+
+        const validationErrors = validation.filter(field => field.condition)
+
+        if (validationErrors.length > 0) {
+            throw new Error(validationErrors[0].message)
+        }
 
         return true
     }
 }
+
 
 module.exports = DataValidation

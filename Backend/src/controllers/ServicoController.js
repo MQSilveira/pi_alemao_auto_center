@@ -1,22 +1,18 @@
-const jwt = require('jsonwebtoken')
-const bcrypt = require('bcrypt')
-
 const ServicoService = require('../services/ServicoService')
 const AdmService = require('../services/AdmService')
 const ClienteService = require('../services/ClienteService')
-
-const config = require('../config')
+const DataValidation = require('../utils/validation')
 
 const servicoService = new ServicoService()
 const admService = new AdmService()
 const clienteService = new ClienteService()
-
+const verify = new DataValidation()
 
 class ServicoController {
     async GetServico(_, res) {
         try {
             const servico = await servicoService.GetServico()
-            if (servico === null) {
+            if (!servico) {
                 return res.status(404).json({ message: 'Não há serviços cadastrados!' })
             }
 
@@ -30,7 +26,7 @@ class ServicoController {
     async GetServicoById(req, res) {
         try {
             const servico = await servicoService.GetServicoById(req.params.id)
-            if (servico === null) {
+            if (!servico) {
                 return res.status(404).json({ message: 'Serviço não encontrado!' })
             }
 
@@ -43,50 +39,50 @@ class ServicoController {
 
     async CreateServico(req, res) {
         try {
-            const validation = [
-                { condition: Object.keys(req.body).length === 0, message: 'É necessário informar os dados do serviço!' },
-                { condition: !req.body.data_hora, message: 'Data e hora são obrigatórios!' },
-                { condition: !req.body.cliente_id, message: 'Cliente é obrigatório!' },
-                { condition: !req.body.placa, message: 'Placa é obrigatória!' },
-                { condition: !req.body.marca, message: 'Marca é obrigatória!' },
-                { condition: !req.body.modelo, message: 'Modelo é obrigatório!' },
-                { condition: !req.body.descricao_servico, message: 'Descrição do serviço é obrigatória!' },
-                { condition: !req.body.administrador_id, message: 'Administrador é obrigatório!' }
-            ]
-
-            const validationErrors = validation.filter(field => field.condition)
-
-            if (validationErrors.length > 0) {
-                return res.status(400).json({ message: validationErrors[0].message })
-            }
+            verify.CreateServico(req.body)
             
-            const adm = await admService.FindAdmById(req.body.administrador_id)
-            if (adm === null) {
-                return res.status(404).json({ message: 'Administrador não encontrado!' })
-            }
+            let cliente = null
 
-            const cliente = await clienteService.FindClienteById(req.body.cliente_id)
-            if (cliente === null) {
-                return res.status(404).json({ message: 'Cliente não encontrado!' })
+            if (req.body.cliente_id) {
+                cliente = await clienteService.FindClienteById(req.body.cliente_id)
+
+                if (!cliente) {
+                    return res.status(404).json({ message: 'Cliente não encontrado!' })
+                }
+            
+            } else if (req.body.cliente) {
+                cliente = {
+                    nome_completo: req.body.cliente.nome_completo_cliente,
+                    contato: req.body.cliente.contato_cliente,
+                    endereco: req.body.cliente.endereco_cliente
+                }
+                
+                verify.CreateCliente(cliente)
+
+                cliente = await clienteService.CreateCliente(cliente)
+
+            } else {
+                return res.status(400).json({ message: 'É necessário informar o cliente!' })
             }
 
             const ServicoData = {
                 data_hora: req.body.data_hora,
-                cliente_id: cliente,
+                cliente_id: cliente.id,
                 placa: req.body.placa,
                 marca: req.body.marca,
                 modelo: req.body.modelo,
                 valor: req.body.valor,
                 descricao_servico: req.body.descricao_servico,
-                administrador_id: adm
+                concluido: req.body.concluido || false,
+                administrador_id: req.body.administrador_id
             }
 
             await servicoService.CreateServico(ServicoData)
             res.status(201).json({ message: 'Serviço criado com sucesso!' })
             
         }
-        catch (error) {
-            res.status(500).json({ message: error.message })
+        catch (err) {
+            res.status(500).json({ message: err.message })
         }
     }
 
@@ -101,7 +97,7 @@ class ServicoController {
             let AdmData = {}
             if (req.body.administrador_id) {
                 const adm = await admService.FindAdmById(req.body.administrador_id)
-                if (adm === null) {
+                if (!adm) {
                     return res.status(404).json({ message: 'Administrador não encontrado!' })
                 }
 
@@ -114,7 +110,7 @@ class ServicoController {
             let ClienteData = {}
             if (req.body.cliente_id) {
                 const cliente = await clienteService.FindClienteById(req.body.cliente_id)
-                if (cliente === null) {
+                if (!cliente) {
                     return res.status(404).json({ message: 'Cliente não encontrado!' })
                 }
 
@@ -128,7 +124,7 @@ class ServicoController {
 
             const servico = await servicoService.GetServicoById(req.params.id)
 
-            if (servico === null) {
+            if (!servico) {
                 return res.status(404).json({ message: 'Serviço não encontrado!' })
             
             } else {
@@ -155,12 +151,15 @@ class ServicoController {
 
     async DeleteServico(req, res) {
         try {
+            
+            const servico = await servicoService.FindServicoById(req.params.id)
+            if (!servico) {
+                return res.status(404).json({ message: 'Serviço não encontrado!' })
+            }
+
             await servicoService.DeleteServico(req.params.id)
-            res.status(204).json(
-                { 
-                    message: 'Serviço deletado com sucesso!' 
-                }
-            )
+            res.status(200).json({ message: 'Serviço deletado com sucesso!' })
+
         }
         catch (error) {
             res.status(500).json({ message: error.message })

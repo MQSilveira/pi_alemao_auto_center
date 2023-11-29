@@ -56,6 +56,20 @@ class ServicoRepository {
         return servico
     }
 
+    async FindServicoById(id, transaction) {
+        const servico = await Servico.findOne(
+            {
+                where: { id },
+                attributes: ['id']
+            },
+            { transaction }
+        )
+        return servico
+    }
+
+
+    
+
     async CreateServico(data, transaction) { 
         const servico = await Servico.create(
             {
@@ -67,7 +81,7 @@ class ServicoRepository {
                 concluido: data.concluido,
                 descricao_servico: data.descricao_servico,
                 administrador_id: data.administrador_id,
-                concluido: 0,
+                concluido: data.concluido,
                 valor: data.valor
             },
             { transaction }
@@ -98,6 +112,7 @@ class ServicoRepository {
             { where: { id: id } },
             { transaction }
         )
+        return true
     }
 }
 

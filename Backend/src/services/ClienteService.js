@@ -1,5 +1,7 @@
 const ClienteRepository = require('../repositories/ClienteRepository')
+const DataValidation = require('../utils/validation')
 
+const verify = new DataValidation()
 const repositories = new ClienteRepository()
 
 class ClienteService {

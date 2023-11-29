@@ -13,6 +13,11 @@ class ServicoService {
         return servico
     }
 
+    async FindServicoById(id, transaction) {
+        const servico = repositories.FindServicoById(id, transaction)
+        return servico
+    }
+    
     async CreateServico(data, transaction) {
         const servico = repositories.CreateServico(data, transaction)
         return servico
