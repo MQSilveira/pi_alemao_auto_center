@@ -53,8 +53,8 @@ class ClienteRepository {
                 return null
             
             } else {
-                const id = cliente.dataValues.id
-                return id
+                const { id, nome_completo, contato, endereco } = cliente.dataValues
+                return { id, nome_completo, contato, endereco }
             }
 
         } catch (err) {

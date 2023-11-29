@@ -59,8 +59,9 @@ class AdmRepository {
                 return null
 
             } else {
-                const id = adm.dataValues.id
-                return id
+                const { nome_completo, id } = adm.dataValues
+                return { nome_completo, id }
+                
                 
             }
 

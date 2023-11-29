@@ -90,33 +90,63 @@ class ServicoController {
         }
     }
 
-        // FAZER O UPDATE //
+
     async UpdateServico(req, res) {
         try {
-            const AdmData = {
-                nome_completo: req.body.nome_completo
-            }
-            const adm = await admService.UpdateAdm(req.params.id, AdmData)
 
-            const ClienteData = {
-                nome_completo: req.body.nome_completo,
-                contato: req.body.contato,
-                endereco: req.body.endereco
+            if (Object.keys(req.body).length === 0) {
+                return res.status(400).json({ message: 'É necessário informar os dados do serviço!' })
             }
-            const cliente = await clienteService.UpdateCliente(req.params.id, ClienteData)
 
-            const ServicoData = {
-                data_hora: req.body.data_hora,
-                cliente_id: cliente.id,
-                placa: req.body.placa,
-                marca: req.body.marca,
-                modelo: req.body.modelo,
-                descricao_servico: req.body.descricao_servico,
-                administrador_id: adm.id
+            let AdmData = {}
+            if (req.body.administrador_id) {
+                const adm = await admService.FindAdmById(req.body.administrador_id)
+                if (adm === null) {
+                    return res.status(404).json({ message: 'Administrador não encontrado!' })
+                }
+
+                AdmData = {
+                    id: req.body.administrador_id,
+                    nome_completo: req.body.nome_completo
+                }
             }
-            const servico = await servicoService.UpdateServico(req.params.id, ServicoData)
 
-            res.status(200).json(servico)
+            let ClienteData = {}
+            if (req.body.cliente_id) {
+                const cliente = await clienteService.FindClienteById(req.body.cliente_id)
+                if (cliente === null) {
+                    return res.status(404).json({ message: 'Cliente não encontrado!' })
+                }
+
+                ClienteData = {
+                    id: req.body.cliente_id,
+                    nome_completo: req.body.nome_completo,
+                    contato: req.body.contato,
+                    endereco: req.body.endereco
+                }
+            }
+
+            const servico = await servicoService.GetServicoById(req.params.id)
+
+            if (servico === null) {
+                return res.status(404).json({ message: 'Serviço não encontrado!' })
+            
+            } else {
+                const ServicoData = {
+                    data_hora: req.body.data_hora || servico.data_hora,
+                    cliente_id: ClienteData.id || servico.cliente_id,
+                    placa: req.body.placa || servico.placa,
+                    marca: req.body.marca || servico.marca,
+                    modelo: req.body.modelo || servico.modelo,
+                    concluido: req.body.concluido || servico.concluido,
+                    descricao_servico: req.body.descricao_servico || servico.descricao_servico,
+                    administrador_id: AdmData.id || servico.administrador_id,
+                    valor: req.body.valor || servico.valor
+                }
+
+                await servicoService.UpdateServico(req.params.id, ServicoData)
+                res.status(200).json({ message: 'Serviço atualizado com sucesso!' })
+            }
         }
         catch (error) {
             res.status(500).json({ message: error.message })
