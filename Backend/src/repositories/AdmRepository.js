@@ -10,7 +10,7 @@ class AdmRepository {
     async GetAdm() {
         try {
             const adm = await Adm.findAll({
-                attributes: ['nome_completo', 'email', 'contato']
+                attributes: ['nome_completo', 'email', 'telefone']
             })
             if (adm.length === 0) {
                 return null
@@ -36,8 +36,8 @@ class AdmRepository {
                 return null
 
             } else {
-                const { nome_completo, email, contato } = adm.dataValues
-                return { nome_completo, email, contato }
+                const { nome_completo, email, telefone } = adm.dataValues
+                return { nome_completo, email, telefone }
             }
 
         } catch (err) {
@@ -85,7 +85,7 @@ class AdmRepository {
                     nome_completo: data.nome_completo,
                     email: data.email,
                     senha: hashedsenha,
-                    contato: data.contato,
+                    telefone: data.telefone,
                 },
                 { transaction }
             )
@@ -101,7 +101,7 @@ class AdmRepository {
             const updateFields = {
                 nome_completo: data.nome_completo,
                 email: data.email,
-                contato: data.contato,
+                telefone: data.telefone,
                 updatedAt : Sequelize.literal('CURRENT_TIMESTAMP')
             }
 

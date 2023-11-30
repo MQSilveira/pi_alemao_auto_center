@@ -53,7 +53,7 @@ class ServicoController {
             } else if (req.body.cliente) {
                 cliente = {
                     nome_completo: req.body.cliente.nome_completo_cliente,
-                    contato: req.body.cliente.contato_cliente,
+                    telefone: req.body.cliente.telefone_cliente,
                     endereco: req.body.cliente.endereco_cliente
                 }
                 
@@ -117,7 +117,7 @@ class ServicoController {
                 ClienteData = {
                     id: req.body.cliente_id,
                     nome_completo: req.body.nome_completo,
-                    contato: req.body.contato,
+                    telefone: req.body.telefone,
                     endereco: req.body.endereco
                 }
             }

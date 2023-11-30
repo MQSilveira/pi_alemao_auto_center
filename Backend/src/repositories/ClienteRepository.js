@@ -5,7 +5,7 @@ class ClienteRepository {
     async GetCliente() {
         try {
             const cliente = await Cliente.findAll({
-                attributes: ['nome_completo', 'contato', 'endereco']
+                attributes: ['nome_completo', 'telefone', 'endereco']
             })
             if (cliente.length === 0) {
                 return null
@@ -31,8 +31,8 @@ class ClienteRepository {
                 return null
 
             } else {
-                const { nome_completo, contato, endereco } = cliente.dataValues
-                return { nome_completo, contato, endereco }
+                const { nome_completo, telefone, endereco } = cliente.dataValues
+                return { nome_completo, telefone, endereco }
             }
         } catch (err) {
             throw err
@@ -53,8 +53,8 @@ class ClienteRepository {
                 return null
             
             } else {
-                const { id, nome_completo, contato, endereco } = cliente.dataValues
-                return { id, nome_completo, contato, endereco }
+                const { id, nome_completo, telefone, endereco } = cliente.dataValues
+                return { id, nome_completo, telefone, endereco }
             }
 
         } catch (err) {
@@ -67,7 +67,7 @@ class ClienteRepository {
             const cliente = Cliente.create(
                 {
                     nome_completo: data.nome_completo,
-                    contato: data.contato,
+                    telefone: data.telefone,
                     endereco: data.endereco
                 },
                 { transaction }
@@ -83,7 +83,7 @@ class ClienteRepository {
         try {
             const updateFields = {
                 nome_completo: data.nome_completo,
-                contato: data.contato,
+                telefone: data.telefone,
                 endereco: data.endereco,
                 updated_at: Sequelize.literal('CURRENT_TIMESTAMP')
             }
