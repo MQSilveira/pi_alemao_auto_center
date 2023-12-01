@@ -20,7 +20,7 @@ class ServicoRepository {
                     },
                     {
                         model: Cliente,
-                        attributes: ['id', 'nome_completo', 'contato', 'endereco'],
+                        attributes: ['id', 'nome_completo', 'telefone', 'endereco'],
                         as: 'cliente'
                     }
                 ]
@@ -46,7 +46,7 @@ class ServicoRepository {
                     },
                     {
                         model: Cliente,
-                        attributes: ['id', 'nome_completo', 'contato', 'endereco'],
+                        attributes: ['id', 'nome_completo', 'telefone', 'endereco'],
                         as: 'cliente'
                     }
                 ]
