@@ -1,11 +1,20 @@
 const { Sequelize } = require('sequelize')
 const { development } = require('../config')
 
-const db = new Sequelize(development)
+const { username, password, database, host, dialect, timezone } = development
 
-db.sync()
+const sequelize = new Sequelize(database, username, password, {
+    host,
+    dialect,
+    timezone,
+    define: {
+        underscored: true,
+        timestamps: false
+    }
+})
+
+sequelize.authenticate()
     .then(() => {
-        
         console.log('Conectado ao banco de dados')
     })
     .catch(err => {
