@@ -2,12 +2,12 @@
 class DataValidation {
     CreateCliente = (...data) => {
 
-        const { nome_completo, contato, endereco } = data[0]
+        const { nome_completo, telefone, endereco } = data[0]
 
         const validation = [
             { condition: Object.keys(data).length === 0, message: 'É necessário informar os dados do cliente!' },
             { condition: !nome_completo, message: 'Nome do cliente é obrigatório!' },
-            { condition: !contato, message: 'Contato do cliente é obrigatório!' },
+            { condition: !telefone, message: 'Telefone do cliente é obrigatório!' },
             { condition: !endereco, message: 'Endereço do cliente é obrigatório!' }
         ]
 

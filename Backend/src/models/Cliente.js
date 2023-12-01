@@ -11,7 +11,7 @@ const Cliente = db.define('cliente', {
         type: DataTypes.STRING,
         allowNull: false
     },
-    contato: {
+    telefone: {
         type: DataTypes.STRING,
         allowNull: false
     },

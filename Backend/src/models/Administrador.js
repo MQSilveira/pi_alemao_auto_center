@@ -32,6 +32,7 @@ const Administrador = db.define('administrador', {
     updatedAt: {
         type: DataTypes.DATE,
         field: 'updated_at'
+        
     }
 }, {
     tableName: 'administrador'
