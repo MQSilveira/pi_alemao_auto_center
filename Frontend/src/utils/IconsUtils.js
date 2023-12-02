@@ -1,6 +1,6 @@
 import {
     FaHouseUser,
-    FaWatsapp
+    FaWhatsapp 
 } from 'react-icons/fa'
 
 export function HomeIcon() {
@@ -8,5 +8,5 @@ export function HomeIcon() {
 }
 
 export function WatsappIcon() {
-    return <FaWatsapp />
+    return <FaWhatsapp />
 }
