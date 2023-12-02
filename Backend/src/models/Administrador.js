@@ -20,7 +20,7 @@ const Administrador = db.define('administrador', {
         type: DataTypes.STRING,
         allowNull: false
     },
-    contato: {
+    telefone: {
         type: DataTypes.STRING,
         allowNull: false
     },

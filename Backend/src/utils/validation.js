@@ -23,14 +23,14 @@ class DataValidation {
 
     CreateServico = (...data) => {
         
-        const { data_hora, placa, marca, modelo, descricao_servico, administrador_id } = data[0]
+        const { data_horario, placa_veiculo, marca_veiculo, modelo_veiculo, descricao_servico, administrador_id } = data[0]
 
         const validation = [
             { condition: Object.keys(data).length === 0, message: 'É necessário informar os dados do serviço!' },
-            { condition: !data_hora, message: 'Data e hora do serviço são obrigatórios!' },
-            { condition: !placa, message: 'Placa do veículo é obrigatória!' },
-            { condition: !marca, message: 'Marca do veículo é obrigatória!' },
-            { condition: !modelo, message: 'Modelo do veículo é obrigatório!' },
+            { condition: !data_horario, message: 'Data e hora do serviço são obrigatórios!' },
+            { condition: !placa_veiculo, message: 'Placa do veículo é obrigatória!' },
+            { condition: !marca_veiculo, message: 'Marca do veículo é obrigatória!' },
+            { condition: !modelo_veiculo, message: 'Modelo do veículo é obrigatório!' },
             { condition: !descricao_servico, message: 'Descrição do serviço é obrigatória!' },
             { condition: !administrador_id, message: 'Administrador é obrigatório!' }
         ]

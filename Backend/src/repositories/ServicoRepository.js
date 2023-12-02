@@ -6,6 +6,7 @@ const Cliente = require('../models/Cliente')
 // AJUSTAR O UPDATED_AT //
 // AO CRIAR UM SERVIÇO, O CAMPO UPDATED_AT É CRIADO COM O MESMO VALOR DE CREATED_AT //
 
+
 const encrypter = new DataEncrypter()
 
 class ServicoRepository {
@@ -73,12 +74,11 @@ class ServicoRepository {
     async CreateServico(data, transaction) { 
         const servico = await Servico.create(
             {
-                data_hora: data.data_hora,
+                data_horario: data.data_horario,
                 cliente_id: data.cliente_id,
-                placa: data.placa,
-                marca: data.marca,
-                modelo: data.modelo,
-                concluido: data.concluido,
+                placa_veiculo: data.placa_veiculo,
+                marca_veiculo: data.marca_veiculo,
+                modelo_veiculo: data.modelo_veiculo,
                 descricao_servico: data.descricao_servico,
                 administrador_id: data.administrador_id,
                 concluido: data.concluido,
@@ -92,11 +92,11 @@ class ServicoRepository {
     async UpdateServico(id, data, transaction) {
         Servico.update(
             {
-                data_hora: data.data_hora,
+                data_horario: data.data_horario,
                 cliente_id: data.cliente_id,
-                placa: data.placa,
-                marca: data.marca,
-                modelo: data.modelo,
+                placa_veiculo: data.placa_veiculo,
+                marca_veiculo: data.marca_veiculo,
+                modelo_veiculo: data.modelo_veiculo,
                 concluido: data.concluido,
                 descricao_servico: data.descricao_servico,
                 administrador_id: data.administrador_id,

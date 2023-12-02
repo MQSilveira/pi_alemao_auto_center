@@ -1,3 +1,4 @@
+
 const { DataTypes, Sequelize } = require('sequelize')
 
 const db = require('../database/db')
@@ -11,7 +12,7 @@ const Servico = db.define('servico', {
         autoIncrement: true,
         primaryKey: true
     },
-    data_hora: {
+    data_horario: {
         type: DataTypes.DATE,
         allowNull: false
     },
@@ -23,15 +24,15 @@ const Servico = db.define('servico', {
             key: 'id'
         }
     },
-    placa: {
+    placa_veiculo: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    marca: {
+    marca_veiculo: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    modelo: {
+    modelo_veiculo: {
         type: DataTypes.STRING,
         allowNull: false
     },

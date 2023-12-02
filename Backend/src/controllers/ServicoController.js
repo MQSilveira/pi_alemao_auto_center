@@ -66,11 +66,11 @@ class ServicoController {
             }
 
             const ServicoData = {
-                data_hora: req.body.data_hora,
+                data_horario: req.body.data_horario,
                 cliente_id: cliente.id,
-                placa: req.body.placa,
-                marca: req.body.marca,
-                modelo: req.body.modelo,
+                placa_veiculo: req.body.placa_veiculo,
+                marca_veiculo: req.body.marca_veiculo,
+                modelo_veiculo: req.body.modelo_veiculo,
                 valor: req.body.valor,
                 descricao_servico: req.body.descricao_servico,
                 concluido: req.body.concluido || false,
@@ -129,11 +129,11 @@ class ServicoController {
             
             } else {
                 const ServicoData = {
-                    data_hora: req.body.data_hora || servico.data_hora,
+                    data_horario: req.body.data_horario || servico.data_horario,
                     cliente_id: ClienteData.id || servico.cliente_id,
-                    placa: req.body.placa || servico.placa,
-                    marca: req.body.marca || servico.marca,
-                    modelo: req.body.modelo || servico.modelo,
+                    placa_veiculo: req.body.placa_veiculo || servico.placa_veiculo,
+                    marca_veiculo: req.body.marca_veiculo || servico.marca_veiculo,
+                    modelo_veiculo: req.body.modelo_veiculo || servico.modelo_veiculo,
                     concluido: req.body.concluido || servico.concluido,
                     descricao_servico: req.body.descricao_servico || servico.descricao_servico,
                     administrador_id: AdmData.id || servico.administrador_id,
