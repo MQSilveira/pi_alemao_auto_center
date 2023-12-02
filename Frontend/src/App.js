@@ -1,13 +1,10 @@
-import React from "react"
-// import router 
+import RouterRoot from './routes/AppRouter'
 
 
 function App() {
   return (
-    <div className="App">
-      <h1>App</h1>
-    </div>
-  );
+    <RouterRoot />
+  )
 }
 
 export default App;
