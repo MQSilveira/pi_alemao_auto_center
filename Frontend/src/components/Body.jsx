@@ -1,4 +1,4 @@
-import Sidebar from './Sidebar'
+import Navbar from './navbar/Navbar'
 import Footer from './Footer'
 import Home from '../screens/home/Home'
 import About from '../screens/about/About'
@@ -13,7 +13,7 @@ export default function Body() {
 
         <body className='body'>    
             <main className='container' id='main'>
-                <Sidebar />
+                <Navbar />
                 <Home />
                 <About />
                 <OurServices />
