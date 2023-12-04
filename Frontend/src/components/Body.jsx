@@ -10,8 +10,7 @@ import './styles/Body.css'
 
 export default function Body() {
     return (
-
-        <body className='body'>    
+        <div className='body'>    
             <main className='container' id='main'>
                 <Navbar />
                 <Home />
@@ -21,8 +20,6 @@ export default function Body() {
                 <Assessments />
                 <Footer />
             </main>
-        </body>
+        </div>
     )
 }
-
-

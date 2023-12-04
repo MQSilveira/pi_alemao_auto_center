@@ -25,11 +25,11 @@ export default function Footer() {
                 title="Localização da empresa"
                 width="600" 
                 height="450" 
-                allowfullscreen="" 
+                allowFullScreen="" 
                 aria-hidden="false"
-                tabindex="0"
+                tabIndex="0"
                 loading="lazy" 
-                referrerpolicy="no-referrer-when-downgrade"
+                referrerPolicy="no-referrer-when-downgrade"
                 ></iframe>
             </div>
         </footer>
