@@ -1,16 +1,30 @@
+import { about1 } from '../../utils/ImageUtils'
+import './About.css'
+
+
 
 export default function About() {
     return (
         <div className="about">
             <div className="about-container">
                 <div className="about-content">
-                    <h1 className="about-title">Sobre nós</h1>
-                    <h2 className="about-subtitle">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus.</h2>
-                    <p className="about-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus.</p>
-                    <a href="#services" className="about-btn">Serviços</a>
+                    <div className="about-text">
+                        <h1 className="about-title">Sobre nós</h1>
+                        <p className="about-subtitle">
+                            Somos uma oficina mecânica dedicada ao atendimento completo das necessidades do seu veículo. Localizada em Laguna, a Alemão Auto Center é uma referência em serviços automotivos, destacando-se pela excelência, comprometimento e expertise que oferecemos aos nossos clientes.
+                        </p>
+                    </div>
+                    <div className="about-image-container">
+                        
+                    <img 
+                        className="about-image" 
+                        src={about1} 
+                        alt="Alemão Auto Center" 
+                        />
+                        
+                    </div>
                 </div>
             </div>
         </div>
-    )
+    );
 }
-

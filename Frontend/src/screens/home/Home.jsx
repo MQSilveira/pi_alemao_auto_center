@@ -1,29 +1,12 @@
-import React, { useState } from 'react';
-
-import { motion } from "framer-motion";
-
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+import { useState } from 'react'
+import Slider from 'react-slick'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
 import './Home.css';
-
+import { NextArrow, PrevArrow} from '../../utils/ArrowsCarrossel'
+import CarouselSlide from '../../utils/CarouselSlide'
 import { carrossel1, carrossel2, carrossel3, carrossel4, carrossel5 } from '../../utils/ImageUtils'
 
-const NextArrow = (props) => {
-  const { className, style, onClick } = props;
-  return (
-    <div className={className} style={{ ...style, display: 'block' }} onClick={onClick}>
-    </div>
-  );
-};
-
-const PrevArrow = (props) => {
-  const { className, style, onClick } = props;
-  return (
-    <div className={className} style={{ ...style, display: 'block' }} onClick={onClick}>
-    </div>
-  );
-};
 
 const Carousel = () => {
     const arrayText = [
@@ -40,14 +23,13 @@ const Carousel = () => {
         setCurrentSlide(index);
     }
 
-
     const settings = {
         dots: true,
         infinite: true,
         speed: 1000,
         slidesToShow: 1,
         slidesToScroll: 1,
-        // autoplay: true,
+        autoplay: true,
         autoplaySpeed: 6000,
         nextArrow: <NextArrow />,
         prevArrow: <PrevArrow />,
@@ -57,53 +39,20 @@ const Carousel = () => {
     };
     
     return (
-    
-    <div className="carousel-container">
-    <Slider {...settings}>
-
-        {[carrossel1, carrossel2, carrossel3, carrossel4, carrossel5].map((image, index) => ( 
-            <div className="carousel-slide" key={index}>
-
-                <motion.div
-                className="content-wrapper"
-                initial={{ opacity: 0, y: "-100%" }}
-                animate={
-                    currentSlide === index
-                    ? { opacity: 1, y: 0 }
-                    : { opacity: 0, y: "-100%" }
-                }
-                transition={{
-                    duration: 0.5,
-                    delay: currentSlide === index ? 1 : 0,
-                }}
-                >
-
-            </motion.div>
-            <div className="text-container">
-                <div className="text-content">
-                    {arrayText[index].split('').map((el, i) => (
-                        <motion.span
-                        key={i}
-                        initial={{ opacity: 0 }}
-                        animate={currentSlide === index ? { opacity: 1 } : {}}
-                        transition={{
-                            duration: currentSlide === index ? 0.5 : 0,
-                            delay: currentSlide === index ? 2 + i / 50 : 0,
-                            }}
-                        >
-                            {el}{""}
-                        </motion.span>
-                    ))}
-                </div>
-            </div>
-            <img 
-            src={image} 
-            alt={`Imagem ${index + 1}`}
-            />
-            </div>
-        ))}
-    </Slider>
-    </div>
+        <div className='carousel-container'>
+            <Slider {...settings}>
+                {[carrossel1, carrossel2, carrossel3, carrossel4, carrossel5].map((image, index) => (
+                    <CarouselSlide
+                        key={index}
+                        index={index}
+                        currentSlide={currentSlide}
+                        handleSlideChange={handleSlideChange}
+                        image={image}
+                        text={arrayText[index]}
+                    />
+                ))}
+            </Slider>
+        </div>
     );
 };
 
