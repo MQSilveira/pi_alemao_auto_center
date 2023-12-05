@@ -10,3 +10,11 @@ export const carrossel5 = require('../assets/img/carousel/carousel05.png')
 
 // About 
 export const about1 = require('../assets/img/about/about1.jpg')
+
+// Our Services
+export const alignment = require('../assets/img/outservices/alignment.jpg')
+export const balance = require('../assets/img/outservices/balance.jpg')
+export const brakes = require('../assets/img/outservices/break.jpg')
+export const mechanics = require('../assets/img/outservices/mechanics.jpg')
+export const oil = require('../assets/img/outservices/oil.jpg')
+export const suspension = require('../assets/img/outservices/suspension.jpg')
