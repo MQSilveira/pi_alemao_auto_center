@@ -18,3 +18,8 @@ export const brakes = require('../assets/img/outservices/break.jpg')
 export const mechanics = require('../assets/img/outservices/mechanics.jpg')
 export const oil = require('../assets/img/outservices/oil.jpg')
 export const suspension = require('../assets/img/outservices/suspension.jpg')
+
+// Mission, Vision and Values
+export const mission = require('../assets/img/missionVisionValues/mission.jpg')
+export const vision = require('../assets/img/missionVisionValues/vision.jpg')
+export const values = require('../assets/img/missionVisionValues/values.jpg')

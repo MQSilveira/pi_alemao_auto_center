@@ -5,6 +5,7 @@ import About from '../screens/about/About'
 import OurServices from '../screens/ourServices/OurServices'
 import Budget from '../screens/budget/Budget'
 import Assessments from '../screens/assessments/Assessments'
+import MissionVisionValues from '../screens/missionVisionValues/MissionVisionValues'
 import './styles/Body.css'
 
 
@@ -15,6 +16,7 @@ export default function Body() {
                 <Navbar />
                 <Home />
                 <About />
+                <MissionVisionValues />
                 <OurServices />
                 <Budget />
                 <Assessments />
