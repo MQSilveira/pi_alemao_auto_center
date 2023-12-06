@@ -105,3 +105,21 @@ footer {
 .social-links a:hover {
     color: #ff0000;
 }
+
+
+
+
+@media screen and (max-width: 768px) {
+    
+    .cards,
+    .center-right,
+    .right-side {
+        display: none;
+    }
+
+    .left-side,
+    .center-left {
+        width: 50%;
+    }
+    
+}

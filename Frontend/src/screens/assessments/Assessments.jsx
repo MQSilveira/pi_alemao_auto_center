@@ -14,8 +14,8 @@ export default function Assessments() {
 
     return (
         <div className='assessments'>
-            <h3>Avaliações</h3>
-            <p>
+            <h1 className="title">Avaliações</h1>
+            <p className='text-assessments'>
                 Sua opinião é essencial para impulsionar nosso crescimento. <br />
                 Se você teve uma experiência conosco, por favor, compartilhe seus comentários. Valorizamos profundamente suas sugestões, pois elas nos ajudam a aprimorar continuamente nossos serviços e proporcionar a você uma experiência ainda melhor.
             </p>

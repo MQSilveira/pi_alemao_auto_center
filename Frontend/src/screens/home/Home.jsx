@@ -1,3 +1,4 @@
+import { useInView } from 'react-intersection-observer'
 import { useState } from 'react'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
@@ -8,6 +9,11 @@ import CarouselSlide from '../../utils/CarouselSlide'
 import { carrossel1, carrossel2, carrossel3, carrossel4, carrossel5 } from '../../utils/ImageUtils'
 
 const Carousel = () => {
+    const [ref, inView] = useInView({
+        triggerOnce: true,
+        threshold: 0.5,
+    })
+
     const arrayText = [
         'Soluções completas em serviços automotivos',
         'Profissionais experientes para serviços de alta qualidade',
@@ -38,7 +44,7 @@ const Carousel = () => {
     };
     
     return (
-        <div name='home' className='home' id='home'>
+        <div id='home' ref={ref}  name='home' className={`home ${inView ? 'in-view' : ''}`}>
             <div className='carousel-container' data-aos="zoom-in" data-aos-delay="100">
                 <Slider {...settings}>
                     {[carrossel1, carrossel2, carrossel3, carrossel4, carrossel5].map((image, index) => (

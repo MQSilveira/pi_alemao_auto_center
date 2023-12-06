@@ -1,9 +1,10 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { navLogo } from '../../utils/ImageUtils'
 import { Link } from 'react-scroll';
 
 import * as Icons from '../../utils/IconsUtils'
 import './Navbar.css'
+
 
 export default function Navbar() {
     const [ isActive, setIsActive ] = useState(false)
@@ -12,6 +13,30 @@ export default function Navbar() {
         setIsActive(!isActive)
     }
 
+    const handleItemClick = () => {
+        setIsActive(false)
+    }
+
+    useEffect(() => {
+        let prevScrollPos = window.pageYOffset;
+
+        const handleScroll = () => {
+            const currentScrollPos = window.pageYOffset;
+
+            if (prevScrollPos > currentScrollPos) {
+                setIsActive(false);
+            }
+
+            prevScrollPos = currentScrollPos;
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+    
     return (
         <>
             <header id="header">
@@ -34,27 +59,27 @@ export default function Navbar() {
                         <div className='wrapper'>
                             <ul>
                                 <li>
-                                    <Link to="home" className="nav-link scrollto" spy={true} smooth={true} duration={500} offset={-500}> 
+                                    <Link to="home" className="nav-link scrollto" spy={true} smooth={true} duration={500} offset={-500} onClick={handleItemClick}> 
                                         <span>Início</span>
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link to="about" className="nav-link scrollto" spy={true} smooth={true} duration={500}> 
+                                    <Link to="about" className="nav-link scrollto" spy={true} smooth={true} duration={500} onClick={handleItemClick}> 
                                         <span>Sobre nós</span>
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link to="ourServices" className="nav-link scrollto" spy={true} smooth={true} duration={500} offset={-200}> 
+                                    <Link to="ourServices" className="nav-link scrollto" spy={true} smooth={true} duration={500} offset={-200} onClick={handleItemClick}> 
                                         <span>Serviços</span>
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link to="budget" className="nav-link scrollto" spy={true} smooth={true} duration={500}> 
+                                    <Link to="budget" className="nav-link scrollto" spy={true} smooth={true} duration={500} onClick={handleItemClick}> 
                                         <span>Orçamento</span>
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link to="footer" className="nav-link scrollto" spy={true} smooth={true} duration={500}> 
+                                    <Link to="footer" className="nav-link scrollto" spy={true} smooth={true} duration={500} onClick={handleItemClick}>
                                         <span>Contato</span>
                                     </Link>
                                 </li>

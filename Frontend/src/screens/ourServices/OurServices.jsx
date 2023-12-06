@@ -1,39 +1,16 @@
+import { useInView } from 'react-intersection-observer'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import './OurServices.css'
-
-import { alignment, balance, brakes, mechanics, oil, suspension } from '../../utils/ImageUtils'
-
-
-const servicesData = [
-    {
-        title: 'Alinhamento e Geometria',
-        image: alignment,
-    },
-    {
-        title: 'Balanceamento',
-        image: balance,
-    },
-    {
-        title: 'Manutenção de freios',
-        image: brakes,
-    },
-    {
-        title: 'Mecânica Geral',
-        image: mechanics,
-    },
-    {
-        title: 'Troca de Óleo  e Filtros',
-        image: oil,
-    },
-    {
-        title: 'Serviço de Suspensão',
-        image: suspension,
-    },
-];
+import { servicesData } from '../../utils/ServiceData'
 
 const OurServices = () => {
+
+  const [ref, inView] = useInView({
+      triggerOnce: true,
+      threshold: 0.5,
+  })
   const settings = {
     dots: true,
     autoplay: true,
@@ -47,8 +24,9 @@ const OurServices = () => {
   }
 
   return (
-    <div id='ourServices' className='our-services-container'>
-      <h2>Principais Serviços</h2>
+    
+    <div id='ourServices' ref={ref} name='our-services-container' className={`our-services-container ${inView ? 'in-view' : ''}`}>
+      <h3 className='sub-services'>Principais Serviços</h3>
       <Slider className='our-services-slider' {...settings}>
         {servicesData.map((service, index) => (
           <div key={index} className='service-item'>

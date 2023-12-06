@@ -24,8 +24,8 @@ export default function Footer() {
             <div className='center-left'>
                 <div className='contacts-container'>
                     <div className='title-footer'>Contato</div>
-                    <div className='content-footer'>Telefone: (48) 98466-5068</div>
-                    <div className='content-footer'>WhatsApp: (48) 98466-5068</div>
+                    <div className='content-footer'>Telefone:<br/> (48) 98466-5068</div>
+                    <div className='content-footer'>WhatsApp:<br/> (48) 98466-5068</div>
                 </div>
                 <div className='title-footer'>Endereço</div>
                 <div className='content-footer'>Av. Senador Galotti, 244 - Progresso, Laguna - SC, 88790-000</div>
