@@ -1,0 +1,15 @@
+.assessments {
+    justify-content: space-between;
+    align-items: center;
+    padding: 100px 200px;
+    text-align: center;
+}
+
+.assessments p {
+    color: #181818;
+    margin: 0 0 50px;
+    font-size: 25px;
+    line-height: 1.6;
+    padding: 0 px;
+    text-align: center;
+}

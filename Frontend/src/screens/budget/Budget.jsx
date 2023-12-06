@@ -14,7 +14,7 @@ export default function Budget() {
                         <i><Icons.WatsappIcon /></i>
                         <span>Fale Conosco via WhatsApp</span>
                     </a>
-                    
+
                     {/*<button onClick={() => window.location.href = 'https://api.whatsapp.com/send?phone=SEUNUMERODOTELEFONE&text=Olá!%20Gostaria%20de%20um%20orçamento.'}>
                         Fale Conosco no WhatsApp
                     </button> */}
