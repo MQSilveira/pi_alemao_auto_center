@@ -1,0 +1,125 @@
+footer {
+    background-image: linear-gradient(rgba(0, 54, 127, 0.92), rgba(0, 54, 127, 0.92)), url('../../assets/img/backgroung_footer2.jpg');
+    background-size: cover;
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.left-side {
+    width: 25%; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.center-left {
+    width: 25%;
+}
+
+
+.center-right{
+    width: 30%;
+}
+
+.right-side {
+    width: 20%;
+}
+  
+.left-side img {
+    max-width: 70%;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.cards img {
+    background-color: rgb(255, 255, 255, 0.8);
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 50%;
+}
+
+.contacts-container {
+    color: #fff;
+}
+
+.title-footer {
+    color: rgb(255, 255, 255);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-shadow: 0px 0px 10px #000000;
+    font-size: 1.5rem;
+    text-align: left;
+}
+
+.content-footer {
+    padding-bottom: 20px;
+    color: #ffffffb6;
+    text-shadow: 0px 0px 10px #000000;
+    font-size: 1rem;
+    text-align: left;
+}
+
+.content-footer strong {
+    padding-right: 5px;
+    font-weight: bold;
+}
+
+.social-container .title-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.title-footer {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-shadow: 0px 0px 10px #000000;
+    font-size: 1.5rem;
+    text-align: left;
+}
+
+.social-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+}
+
+.social-links a {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    font-size: 2rem;
+    margin-right: 20px;
+}
+
+.social-links a:hover {
+    color: #ff0000;
+}
+
+
+
+
+@media screen and (max-width: 768px) {
+    
+    .cards,
+    .center-right,
+    .right-side {
+        display: none;
+    }
+
+    .left-side,
+    .center-left {
+        width: 50%;
+    }
+    
+}

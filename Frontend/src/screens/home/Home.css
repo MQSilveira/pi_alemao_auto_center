@@ -1,0 +1,133 @@
+.home {
+    opacity: 0; 
+    transition: opacity 0.8s ease-in-out;
+}
+
+.home.in-view {
+    opacity: 1;
+}
+.carousel-slide {
+    position: relative;
+    margin-top: -25px;
+}
+
+.slick-slide img {
+    width: 100%;
+    -webkit-filter: drop-shadow(30px 0px 15px #000000);
+    filter: drop-shadow(30px 0px 15px #000000);
+}
+  
+.slick-prev,
+.slick-next {
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    transition: all 0.3s ease;
+    transform-origin: center center;
+    z-index: 1;
+}
+
+.slick-next {
+    right: 30px;
+    border-radius: 50%;
+}
+
+.slick-prev {
+    left: 30px;
+    border-radius: 50%;
+}
+
+.slick-next:before,
+.slick-prev:before {
+    color: rgb(0, 0, 0);
+    opacity: 0.6;
+    font-size: 45px;
+    text-shadow: 0px 0px 10px rgb(255, 255, 255);
+}
+
+.slick-next:hover,
+.slick-prev:hover {
+    opacity: 1;
+    
+}
+
+.slick-dots {
+    bottom: 150px;
+    
+}
+
+.slick-dots li button {
+    background-color: rgb(255, 255, 255);
+    opacity: 1;
+    border-radius: 50%;
+    box-shadow:  rgb(0, 0, 0);
+    
+    
+}
+
+.slick-dots li.slick-active button {
+    background-color: #27272785;
+    
+}
+
+.slick-dots li button:hover {
+    background-color: #27272785;
+}
+  
+.text-container {
+    padding: 20px;
+    position: absolute;
+    top: 58%;
+    left: 25%;
+    width: 33%;
+    height: 55%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 1;  
+     
+}
+
+.text-content {
+    color: rgb(255, 255, 255);
+    font-size: 3em;
+    padding: 10px;
+    padding-top: 4%;
+    
+}
+
+.content-wrapper {
+    top: 28%;
+    margin-left: 7%;
+    transform: translateY(-50%);
+    left: 0;
+    position: absolute;
+    width: 35%;
+    height: 60%;
+    background: rgba(0, 0, 0, 0.9);
+    border-radius: 10%;
+    z-index: 1;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.559);
+}
+
+@media screen and (max-width: 768px) {
+    .slick-dots  {
+        opacity: 0;
+    }
+
+    .text-content,
+    .content-wrapper {
+        display: none;
+        
+    }
+
+    .slick-next:before,
+    .slick-prev:before {
+        font-size: 30px;
+    }
+
+        
+    
+    
+    
+} 

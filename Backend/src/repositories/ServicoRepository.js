@@ -1,12 +1,10 @@
 const Servico = require('../models/Servico')
-const DataEncrypter = require('../utils/encrypter')
 const Administrador = require('../models/Administrador')
 const Cliente = require('../models/Cliente')
 
 // AJUSTAR O UPDATED_AT //
 // AO CRIAR UM SERVIÇO, O CAMPO UPDATED_AT É CRIADO COM O MESMO VALOR DE CREATED_AT //
 
-const encrypter = new DataEncrypter()
 
 class ServicoRepository {
     async GetServico() {
@@ -20,7 +18,7 @@ class ServicoRepository {
                     },
                     {
                         model: Cliente,
-                        attributes: ['id', 'nome_completo', 'contato', 'endereco'],
+                        attributes: ['id', 'nome_completo', 'telefone', 'endereco'],
                         as: 'cliente'
                     }
                 ]
@@ -46,7 +44,7 @@ class ServicoRepository {
                     },
                     {
                         model: Cliente,
-                        attributes: ['id', 'nome_completo', 'contato', 'endereco'],
+                        attributes: ['id', 'nome_completo', 'telefone', 'endereco'],
                         as: 'cliente'
                     }
                 ]
@@ -66,9 +64,6 @@ class ServicoRepository {
         )
         return servico
     }
-
-
-    
 
     async CreateServico(data, transaction) { 
         const servico = await Servico.create(
