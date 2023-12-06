@@ -1,5 +1,7 @@
-
+// Page
 export const navLogo = require('../assets/img/nav-logo.png')
+export const cardLogo = require('../assets/img/cards_logo.png')
+
 
 // Carousel
 export const carrossel1 = require('../assets/img/carousel/carousel01.png')
