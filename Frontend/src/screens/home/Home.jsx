@@ -7,7 +7,6 @@ import { NextArrow, PrevArrow} from '../../utils/ArrowsCarrossel'
 import CarouselSlide from '../../utils/CarouselSlide'
 import { carrossel1, carrossel2, carrossel3, carrossel4, carrossel5 } from '../../utils/ImageUtils'
 
-
 const Carousel = () => {
     const arrayText = [
         'Soluções completas em serviços automotivos',
@@ -39,19 +38,21 @@ const Carousel = () => {
     };
     
     return (
-        <div className='carousel-container'>
-            <Slider {...settings}>
-                {[carrossel1, carrossel2, carrossel3, carrossel4, carrossel5].map((image, index) => (
-                    <CarouselSlide
-                        key={index}
-                        index={index}
-                        currentSlide={currentSlide}
-                        handleSlideChange={handleSlideChange}
-                        image={image}
-                        text={arrayText[index]}
-                    />
-                ))}
-            </Slider>
+        <div name='home' className='home' id='home'>
+            <div className='carousel-container' data-aos="zoom-in" data-aos-delay="100">
+                <Slider {...settings}>
+                    {[carrossel1, carrossel2, carrossel3, carrossel4, carrossel5].map((image, index) => (
+                        <CarouselSlide
+                            key={index}
+                            index={index}
+                            currentSlide={currentSlide}
+                            handleSlideChange={handleSlideChange}
+                            image={image}
+                            text={arrayText[index]}
+                        />
+                    ))}
+                </Slider>
+            </div>
         </div>
     );
 };

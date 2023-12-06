@@ -44,21 +44,21 @@ const OurServices = () => {
     slidesToShow: 3,
     slidesToScroll: 1,
     cssEase: 'linear',
-  };
+  }
 
   return (
-    <div className="our-services-container">
+    <div id='ourServices' className='our-services-container'>
       <h2>Principais Serviços</h2>
-      <Slider className="our-services-slider" {...settings}>
+      <Slider className='our-services-slider' {...settings}>
         {servicesData.map((service, index) => (
-          <div key={index} className="service-item">
+          <div key={index} className='service-item'>
             <img src={service.image} alt={service.title} />
             <p>{service.title}</p>
           </div>
         ))}
       </Slider>
     </div>
-  );
-};
+  )
+}
 
-export default OurServices;
+export default OurServices

@@ -8,7 +8,6 @@ footer {
     align-items: flex-start;
 }
 
-
 .left-side {
     width: 25%; 
     display: flex;
@@ -26,7 +25,6 @@ footer {
 .center-right{
     width: 30%;
 }
-
 
 .right-side {
     width: 20%;
@@ -77,8 +75,6 @@ footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* padding: 0 10px; */
-
     text-align: center;
     font-size: 1rem;
 }
@@ -109,5 +105,3 @@ footer {
 .social-links a:hover {
     color: #ff0000;
 }
-
-

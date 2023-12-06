@@ -1,11 +1,15 @@
 import { about1 } from '../../utils/ImageUtils'
 import './About.css'
-
-
+import { useInView } from 'react-intersection-observer'
 
 export default function About() {
+    const [ref, inView] = useInView({
+        triggerOnce: true,
+        threshold: 0.5,
+    })
+
     return (
-        <div className="about">
+        <div ref={ref} name='about' className={`about ${inView ? 'in-view' : ''}`}>
             <div className="about-container">
                 <div className="about-content">
                     <div className="about-text">

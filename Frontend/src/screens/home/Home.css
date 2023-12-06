@@ -1,9 +1,12 @@
+
 .carousel-slide {
     position: relative;
+
+    margin-top: -25px;
 }
 
 .slick-slide img {
-    width: 100%; 
+    width: 100%;
     -webkit-filter: drop-shadow(30px 0px 15px #000000);
     filter: drop-shadow(30px 0px 15px #000000);
 }
@@ -71,17 +74,13 @@
     transform: translate(-50%, -50%);
     text-align: center;
     z-index: 1;   
-    
 }
 
 .text-content {
     color: rgb(255, 255, 255);
     font-size: 3em;
     padding: 10px;
-    /* border: #ff0000 1px solid; */
     padding-top: 4%;
-
-    
 }
 
 .content-wrapper {
@@ -96,7 +95,6 @@
     border-radius: 10%;
     z-index: 1;
     box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.559);
-
 }
 
 @media screen and (max-width: 768px) {
